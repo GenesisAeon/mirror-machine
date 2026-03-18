@@ -1,88 +1,49 @@
 # CLI Reference
 
-## `diamond scaffold`
+## `mirror reflect`
 
-Create a new project from a template.
+Load and self-reflect a sigil YAML through the Mirror Principle.
 
 ```
-Usage: diamond scaffold [OPTIONS] PROJECT_NAME
-
-Arguments:
-  PROJECT_NAME  Name of the new project (kebab-case recommended)
+Usage: mirror reflect [OPTIONS]
 
 Options:
-  -t, --template TEXT       Template to use [default: minimal]
-  -o, --output-dir PATH     Parent directory for the new project
-  --author TEXT             Author name
-  --description TEXT        Short project description
-  --python-version TEXT     Minimum Python version (e.g. 3.11)
-  --dry-run                 Preview files without writing them
+  --sigil TEXT  Path to sigil YAML file [default: codex-prime.yaml]
 ```
 
 **Examples**
 
 ```bash
-# Minimal project in the current directory
-diamond scaffold my-lib
-
-# Genesis preset with custom author
-diamond scaffold my-physics-tool --template genesis --author "Ada Lovelace"
-
-# Preview what would be created
-diamond scaffold my-lib --dry-run
-
-# Output to a specific directory
-diamond scaffold my-lib --output-dir ~/projects
+mirror reflect --sigil codex-prime.yaml
+mirror reflect --sigil domains.yaml
 ```
 
 ---
 
-## `diamond list-templates`
+## `mirror phase-transition`
 
-List all available templates with their descriptions.
+Simulate a consciousness phase transition using sigmoid × golden-ratio oscillation.
+
+```
+Usage: mirror phase-transition [OPTIONS]
+
+Options:
+  --beta FLOAT    Transition steepness [default: 0.0625]
+  --steps INTEGER Number of simulation steps [default: 100]
+```
+
+**Examples**
 
 ```bash
-diamond list-templates
+# Default gentle emergence
+mirror phase-transition
+
+# Steeper transition
+mirror phase-transition --beta 1.0
+
+# High-resolution simulation
+mirror phase-transition --beta 0.0625 --steps 500
 ```
 
----
-
-## `diamond validate`
-
-Validate a project directory against diamond-setup best practices.
-
-```
-Usage: diamond validate [PATH]
-
-Arguments:
-  PATH  Project directory to validate [default: current directory]
-```
-
-Checks performed:
-
-| Check | Level |
-|-------|-------|
-| `pyproject.toml` present | **Error** |
-| `src/` layout present | Warning |
-| `tests/` directory present | Warning |
-| `.github/workflows/` present | Warning |
-| `README.md` present | Warning |
-| `.gitignore` present | Warning |
-
-```bash
-# Validate the current directory
-diamond validate
-
-# Validate a specific project
-diamond validate path/to/my-project
-```
-
----
-
-## `diamond version`
-
-Print the installed version.
-
-```bash
-diamond version
-```
+The peak value reflects the maximum emergence amplitude:
+`sigmoid(t) × (1 + φ · sin(t · 2π))` where φ = 0.618 (golden ratio).

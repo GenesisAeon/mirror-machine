@@ -1,101 +1,38 @@
-"""Tests for the CLI commands."""
-
-from pathlib import Path
+"""Tests for mirror_machine.cli."""
 
 from typer.testing import CliRunner
 
-from diamond_setup.cli import app
-from diamond_setup.templates import REGISTRY
+from mirror_machine.cli import app
 
 runner = CliRunner()
 
 
-def test_version():
-    result = runner.invoke(app, ["version"])
+def test_phase_transition_runs():
+    result = runner.invoke(app, ["phase-transition"])
     assert result.exit_code == 0
-    assert "1.0.0" in result.output
+    assert "Phase transition peak:" in result.output
 
 
-def test_list_templates():
-    result = runner.invoke(app, ["list-templates"])
+def test_phase_transition_custom_beta():
+    result = runner.invoke(app, ["phase-transition", "--beta", "1.0"])
     assert result.exit_code == 0
-    for name in REGISTRY:
-        assert name in result.output
+    assert "beta=1.0" in result.output
 
 
-def test_scaffold_minimal(tmp_path):
-    result = runner.invoke(app, ["scaffold", "hello-world", "--output-dir", str(tmp_path)])
-    assert result.exit_code == 0, result.output
-    assert (tmp_path / "hello-world" / "pyproject.toml").exists()
-
-
-def test_scaffold_genesis(tmp_path):
-    result = runner.invoke(
-        app,
-        ["scaffold", "my-genesis", "--template", "genesis", "--output-dir", str(tmp_path)],
-    )
-    assert result.exit_code == 0, result.output
-    assert (tmp_path / "my-genesis" / "domains.yaml").exists()
-
-
-def test_scaffold_unknown_template():
-    result = runner.invoke(app, ["scaffold", "x", "--template", "nonexistent"])
-    assert result.exit_code != 0
-    assert "Unknown template" in result.output
-
-
-def test_scaffold_existing_dir(tmp_path):
-    (tmp_path / "existing-proj").mkdir()
-    result = runner.invoke(app, ["scaffold", "existing-proj", "--output-dir", str(tmp_path)])
-    assert result.exit_code != 0
-    assert "already" in result.output and "exists" in result.output
-
-
-def test_scaffold_dry_run_no_files(tmp_path):
-    result = runner.invoke(
-        app, ["scaffold", "dry-proj", "--output-dir", str(tmp_path), "--dry-run"]
-    )
+def test_phase_transition_custom_steps():
+    result = runner.invoke(app, ["phase-transition", "--steps", "50"])
     assert result.exit_code == 0
-    assert "Dry run" in result.output
-    assert not (tmp_path / "dry-proj").exists()
+    assert "steps=50" in result.output
 
 
-def test_scaffold_with_overrides(tmp_path):
-    result = runner.invoke(
-        app,
-        [
-            "scaffold",
-            "custom-proj",
-            "--output-dir",
-            str(tmp_path),
-            "--author",
-            "Test Author",
-            "--description",
-            "A test project",
-        ],
-    )
-    assert result.exit_code == 0, result.output
-    pyproject = (tmp_path / "custom-proj" / "pyproject.toml").read_text()
-    assert "Test Author" in pyproject
-    assert "A test project" in pyproject
-
-
-def test_validate_current_project():
-    """Running validate on diamond-setup's own root should pass."""
-    # Find the repo root (parent of tests/)
-    repo_root = Path(__file__).parent.parent
-    result = runner.invoke(app, ["validate", str(repo_root)])
-    assert result.exit_code == 0, result.output
-    assert "passed" in result.output.lower() or "✔" in result.output
-
-
-def test_validate_missing_pyproject(tmp_path):
-    """A directory without pyproject.toml should fail validation."""
-    result = runner.invoke(app, ["validate", str(tmp_path)])
+def test_reflect_missing_file():
+    result = runner.invoke(app, ["reflect", "--sigil", "nonexistent.yaml"])
     assert result.exit_code != 0
-    assert "error" in result.output.lower() or "✘" in result.output
 
 
-def test_validate_nonexistent_path():
-    result = runner.invoke(app, ["validate", "/nonexistent/path/xyz"])
-    assert result.exit_code != 0
+def test_reflect_valid_sigil(tmp_path):
+    sigil = tmp_path / "codex.yaml"
+    sigil.write_text("coherence: 1.0\n")
+    result = runner.invoke(app, ["reflect", "--sigil", str(sigil)])
+    assert result.exit_code == 0
+    assert "Mirror reflection complete" in result.output
