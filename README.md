@@ -6,6 +6,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/mirror-machine)](https://pypi.org/project/mirror-machine/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19102203.svg)](https://doi.org/10.5281/zenodo.19102203)
 
 ---
 
@@ -64,8 +65,8 @@ mirror-machine/
 
 ## Citation
 
-**DOI** (after Zenodo release): `10.5281/zenodo.XXXXXXX`
-**PyPI**: https://pypi.org/project/mirror-machine/
+**DOI**: [10.5281/zenodo.19102203](https://doi.org/10.5281/zenodo.19102203)
+**PyPI**: `pip install mirror-machine` (oder `pip install "mirror-machine[stack]"` für den vollen GenesisAeon-Stack)
 
 ---
 
