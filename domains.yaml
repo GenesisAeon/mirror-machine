@@ -1,0 +1,5 @@
+domains:
+  mirror-machine:
+    beta_default: 0.0625
+    phase_threshold: 0.5
+    reflection_factor: 1.0

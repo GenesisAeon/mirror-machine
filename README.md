@@ -1,84 +1,72 @@
-# diamond-setup
+# mirror-machine
 
-**Universal Python project scaffold** — generate professional, CI-ready skeletons in seconds.
+**Theoretical Mirror Framework** – self-referential loops, consciousness phase transitions and Mirror Principle simulation for the GenesisAeon stack.
 
-[![CI](https://github.com/GenesisAeon/diamond-setup/actions/workflows/ci.yml/badge.svg)](https://github.com/GenesisAeon/diamond-setup/actions/workflows/ci.yml)
+[![CI](https://github.com/GenesisAeon/mirror-machine/actions/workflows/ci.yml/badge.svg)](https://github.com/GenesisAeon/mirror-machine/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-No cookiecutter, no Jinja2, no magic. Just a clean CLI that produces a fully working project — `uv sync`, `pytest`, ruff, pre-commit and CI all wired up from second one.
+[![PyPI](https://img.shields.io/pypi/v/mirror-machine)](https://pypi.org/project/mirror-machine/)
 
 ---
 
 ## Install
 
 ```bash
-pip install diamond-setup
-# or
-uv tool install diamond-setup
+pip install mirror-machine
+# with full GenesisAeon stack integration
+pip install mirror-machine[stack]
 ```
 
-## Usage
+## CLI Usage
 
 ```bash
-# New project with the minimal template (default)
-diamond scaffold my-lib
+# Reflect a sigil YAML through the Mirror Principle
+mirror reflect --sigil codex-prime.yaml
 
-# GenesisAeon preset (adds domains.yaml + entropy-table bridge)
-diamond scaffold my-physics-tool --template genesis --author "Ada Lovelace"
-
-# Preview what would be generated (no files written)
-diamond scaffold my-lib --dry-run
-
-# See all templates
-diamond list-templates
-
-# Validate any project directory
-diamond validate path/to/my-project
-diamond validate          # validates the current directory
+# Simulate a consciousness phase transition
+mirror phase-transition --beta 0.0625 --steps 100
 ```
 
-## What you get
+## Python API
 
-Running `diamond scaffold my-lib` produces:
+```python
+from mirror_machine import MirrorMachine
 
-```
-my-lib/
-├── src/
-│   └── my_lib/
-│       └── __init__.py       # __version__ = "0.1.0"
-├── tests/
-│   ├── __init__.py
-│   └── test_main.py
-├── .github/
-│   └── workflows/
-│       └── ci.yml            # matrix: 3.11 + 3.12
-├── pyproject.toml            # hatchling, ruff, pytest configured
-├── README.md
-├── .gitignore
-└── .pre-commit-config.yaml   # ruff + standard hooks
+mm = MirrorMachine("codex-prime.yaml")
+
+# Self-referential state with reflection key
+print(mm.state["reflection"])
+
+# Consciousness phase transition curve
+curve = mm.phase_transition(beta=0.0625, steps=200)
+print(f"Peak emergence: {curve.max():.4f}")
 ```
 
-Then just:
+## What It Does
 
-```bash
-cd my-lib
-uv sync --dev
-pre-commit install
-uv run pytest
+| Concept | Implementation |
+|---|---|
+| **Mirror Principle** | `reflect()` — loads YAML sigil, creates `state["reflection"]` self-reference |
+| **Phase Transition** | `phase_transition()` — sigmoid × golden-ratio oscillation (φ = 0.618) |
+| **Entropy Bridge** | `MirrorMachineBridge` — optional link to `entropy-table` (requires `[stack]`) |
+
+## Structure
+
+```
+mirror-machine/
+├── src/mirror_machine/
+│   ├── core.py                 # MirrorMachine – reflect + phase_transition
+│   ├── cli.py                  # Typer CLI: mirror reflect / mirror phase-transition
+│   └── entropy_table_bridge.py # Optional entropy-table integration
+├── domains.yaml                # Mirror-machine domain configuration
+└── tests/
 ```
 
-## Templates
+## Citation
 
-| Template | Description |
-|----------|-------------|
-| `minimal` | Clean Python package for everyone |
-| `genesis` | Adds `domains.yaml` + entropy-table bridge (GenesisAeon preset) |
-
-## Extending
-
-Adding a new template is one Python file. See [docs/templates.md](docs/templates.md).
+**DOI** (after Zenodo release): `10.5281/zenodo.XXXXXXX`
+**PyPI**: https://pypi.org/project/mirror-machine/
 
 ---
 
-Built with [uv](https://docs.astral.sh/uv/) · [Typer](https://typer.tiangolo.com/) · [Rich](https://rich.readthedocs.io/)
+Part of the [GenesisAeon](https://github.com/GenesisAeon) stack — the self-reflective core.
