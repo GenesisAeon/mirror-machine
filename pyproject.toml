@@ -1,11 +1,11 @@
-[build-system]
+﻿[build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
 name = "mirror-machine"
-version = "0.1.0"
-description = "Theoretical Mirror Framework for the GenesisAeon stack – self-referential loops, consciousness phase transitions and Mirror Principle simulation."
+version = "0.3.1"
+description = "Theoretical Mirror Framework for the GenesisAeon stack â€“ self-referential loops, consciousness phase transitions and Mirror Principle simulation."
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
@@ -71,3 +71,4 @@ addopts = "--cov=mirror_machine --cov-report=term-missing"
 [tool.coverage.run]
 source = ["src"]
 omit = ["tests/*"]
+
