@@ -62,9 +62,20 @@ mirror-machine/
 └── tests/
 ```
 
+## Role in the GenesisAeon Ecosystem
+
+`mirror-machine` is **P-MIRROR** in the GenesisAeon ecosystem registry,
+covering the **phase-transition detection / state mirroring** domain: it
+detects critical phase transitions and mirrors self-referential state
+across the GenesisAeon stack via the Mirror Principle.
+
 ## Citation
 
-**DOI** (after Zenodo release): `10.5281/zenodo.XXXXXXX`
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
+
+DOI will be assigned automatically on first GitHub Release once
+Zenodo–GitHub integration is enabled for this repo.
+
 **PyPI**: https://pypi.org/project/mirror-machine/
 
 ---
