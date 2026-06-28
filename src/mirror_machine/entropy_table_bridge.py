@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from entropy_table import EntropyTable  # type: ignore[import-untyped]
+    from entropy_table import EntropyTable  # type: ignore[import-not-found]
 
     _ENTROPY_TABLE_AVAILABLE = True
 except ImportError:
