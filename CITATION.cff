@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "mirror-machine"
+version: "1.0.0"
+date-released: "2026-06-28"
+authors:
+  - name: "GenesisAeon Team"
+    email: team@genesisaeon.org
+repository-code: "https://github.com/GenesisAeon/mirror-machine"
+license: MIT
+abstract: "Phase-transition detection and self-referential state mirroring framework for the GenesisAeon stack: consciousness phase transitions and Mirror Principle simulation."
+keywords:
+  - GenesisAeon
+  - UTAC
+  - CREP
+  - open-science
+  - mirror
+  - consciousness
+  - phase-transition
+  - self-referential
