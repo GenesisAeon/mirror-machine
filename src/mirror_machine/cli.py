@@ -2,10 +2,22 @@
 
 from __future__ import annotations
 
+import sys
+
 import typer
 from rich.console import Console
 
 from .core import MirrorMachine
+
+# Windows consoles default to a non-UTF-8 codepage. Depending on the Rich
+# version this either raises UnicodeEncodeError or -- as happened here --
+# silently replaces the en-dash below with a mojibake placeholder instead
+# of crashing, which is arguably worse since nothing looks wrong at a
+# glance. Force UTF-8 stdout/stderr so behavior matches Linux/macOS
+# terminals and the character actually renders correctly.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 app = typer.Typer(help="Mirror-Machine CLI – self-referential Mirror Framework.")
 console = Console()
@@ -30,7 +42,7 @@ def phase_transition(
     mm = MirrorMachine()
     transition = mm.phase_transition(beta=beta, steps=steps)
     console.print(f"[bold magenta]Phase transition peak:[/] {transition.max():.4f}")
-    console.print(f"[dim]beta={beta}  steps={steps}[/]")
+    console.print(f"[dim]beta={beta}  steps={steps}[/]", highlight=False)
 
 
 if __name__ == "__main__":
