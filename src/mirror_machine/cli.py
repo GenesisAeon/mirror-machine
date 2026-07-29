@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import io
 import sys
 
 import typer
@@ -15,8 +16,9 @@ from .core import MirrorMachine
 # of crashing, which is arguably worse since nothing looks wrong at a
 # glance. Force UTF-8 stdout/stderr so behavior matches Linux/macOS
 # terminals and the character actually renders correctly.
-if hasattr(sys.stdout, "reconfigure"):
+if isinstance(sys.stdout, io.TextIOWrapper):
     sys.stdout.reconfigure(encoding="utf-8")
+if isinstance(sys.stderr, io.TextIOWrapper):
     sys.stderr.reconfigure(encoding="utf-8")
 
 app = typer.Typer(help="Mirror-Machine CLI – self-referential Mirror Framework.")
