@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import io
 import sys
 
 import typer
@@ -15,8 +16,9 @@ from .core import MirrorMachine
 # of crashing, which is arguably worse since nothing looks wrong at a
 # glance. Force UTF-8 stdout/stderr so behavior matches Linux/macOS
 # terminals and the character actually renders correctly.
-if hasattr(sys.stdout, "reconfigure"):
+if isinstance(sys.stdout, io.TextIOWrapper):
     sys.stdout.reconfigure(encoding="utf-8")
+if isinstance(sys.stderr, io.TextIOWrapper):
     sys.stderr.reconfigure(encoding="utf-8")
 
 app = typer.Typer(help="Mirror-Machine CLI – self-referential Mirror Framework.")
@@ -43,6 +45,28 @@ def phase_transition(
     transition = mm.phase_transition(beta=beta, steps=steps)
     console.print(f"[bold magenta]Phase transition peak:[/] {transition.max():.4f}")
     console.print(f"[dim]beta={beta}  steps={steps}[/]", highlight=False)
+
+
+@app.command()
+def export(
+    sigil: str = typer.Option("codex-prime.yaml", help="Path to sigil YAML file."),
+    output: str = typer.Option(
+        "domains.yaml", "--output", "-o", help="Output YAML path."
+    ),
+) -> None:
+    """Export a sigil's reflection to entropy-table via the optional [stack] extra.
+
+    Requires: pip install mirror-machine[stack]
+    """
+    from .entropy_table_bridge import MirrorMachineBridge
+
+    mm = MirrorMachine(sigil)
+    bridge = MirrorMachineBridge()
+    for key, value in mm.state.items():
+        if isinstance(value, (int, float)):
+            bridge.add_reflection(key, value)
+    path = bridge.export(output)
+    console.print(f"[bold green]Exported to {path}[/]")
 
 
 if __name__ == "__main__":
