@@ -71,10 +71,7 @@ across the GenesisAeon stack via the Mirror Principle.
 
 ## Citation
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
-
-DOI will be assigned automatically on first GitHub Release once
-Zenodo–GitHub integration is enabled for this repo.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21006851.svg)](https://doi.org/10.5281/zenodo.21006851)
 
 **PyPI**: https://pypi.org/project/mirror-machine/
 
