@@ -64,7 +64,7 @@ mirror-machine/
 
 ## Role in the GenesisAeon Ecosystem
 
-`mirror-machine` is **P-MIRROR** in the GenesisAeon ecosystem registry,
+`mirror-machine` is **P83** (formerly informally "P-MIRROR") in the GenesisAeon ecosystem registry,
 covering the **phase-transition detection / state mirroring** domain: it
 detects critical phase transitions and mirrors self-referential state
 across the GenesisAeon stack via the Mirror Principle.
